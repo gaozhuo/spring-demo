@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.example.UserServiceImpl"/>
+    <bean id="log1" class="com.example.Log1"/>
+    <bean id="log2" class="com.example.Log2"/>
+    <bean id="log3" class="com.example.Log3"/>
+
+    <!--aop 第一种方式-->
+    <!--<aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.example.*.*(..))"/>
+
+        <aop:advisor advice-ref="log1" pointcut-ref="pointcut"/>
+
+    </aop:config>-->
+
+    <!--aop 第二种方式-->
+    <!--<aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.example.*.*(..))"/>
+
+        <aop:aspect ref="log2">
+            <aop:before method="before" pointcut-ref="pointcut"/>
+            <aop:after method="after" pointcut-ref="pointcut"/>
+            <aop:after-returning method="afterReturning" pointcut-ref="pointcut" returning="user"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="pointcut" throwing="e"/>
+            <aop:around method="around" pointcut-ref="pointcut"/>
+        </aop:aspect>
+    </aop:config>-->
+
+    <!--aop 第三种方式-->
+    <aop:aspectj-autoproxy/>
+</beans>
